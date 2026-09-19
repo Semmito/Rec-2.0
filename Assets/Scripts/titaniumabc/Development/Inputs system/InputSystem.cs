@@ -8,6 +8,7 @@ namespace Assets.Scripts.titaniumabc.Development.Misc_testing
 {
     public class VRInputSystem : MonoBehaviour
     {
+        public static VRInputSystem instance;
         public bool debugMode = false;
         public Action OnButtonAPressed;
         public Action OnButtonBPressed;
@@ -31,8 +32,13 @@ namespace Assets.Scripts.titaniumabc.Development.Misc_testing
         public Action OnRightJoyStickLeft;
         public Action OnRightJoyStickDown;
 
+        public static bool HasInstance()
+        {
+            return instance != null;
+        }
         void Awake()
         {
+            instance = GameObject.Find("Player Rig/XR Origin").GetComponent<VRInputSystem>();
             if (debugMode)
             {
                 Debug.Log("Beginning Action incremation");
